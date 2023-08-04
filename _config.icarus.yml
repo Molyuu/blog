@@ -219,7 +219,7 @@ widgets:
         # Links to be shown on the bottom of the profile widget
         social_links:
             Homepage:
-                icon: fab fa-globe
+                icon: fas fa-house
                 url: 'https://molyuu.cyou'
             Github:
                 icon: fab fa-github
