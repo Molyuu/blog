@@ -1,11 +1,11 @@
-title: Hexo
+title: Molyuu's Blog
 subtitle: ''
 description: ''
 keywords: null
-author: John Doe
+author: Molyuu
 language: en
 timezone: ''
-url: http://example.com
+url: https://blog.molyuu.cyou/
 permalink: ':year/:month/:day/:title/'
 permalink_defaults: null
 pretty_urls:
@@ -34,7 +34,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace: ''
   wrap: true
   hljs: false
