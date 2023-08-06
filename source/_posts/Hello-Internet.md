@@ -2,6 +2,7 @@
 title: Hello Internet
 date: 2023-08-05 02:58:39
 tags: [daily]
+categories: essay
 ---
 
 Yeah, it's on, again.
