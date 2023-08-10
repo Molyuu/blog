@@ -146,7 +146,14 @@ search:
     index_pages: true
 # Comment plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Comment/
-# comment:
+
+comment:
+    type: utterances
+    repo: Molyuu/blog-comments
+    issue_term: pathname        # 必填项，与issue_number二选一填写
+    theme: github-light         # 可选填
+    crossorigin: anonymous
+
 # Donate plugin configurations
 # https://ppoffice.github.io/hexo-theme-icarus/categories/Plugins/Donation/
 # donates:
