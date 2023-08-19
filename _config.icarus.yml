@@ -251,7 +251,15 @@ widgets:
         type: links
         # Names and URLs of the sites
         links:
-            friend link 1: 'https://google.com'
+            Pivot of Winslow: 'https://winsloweric.com/'
+            Hana's Blog: 'https://blog.crepuscular-aosp.icu/'
+            一刀斩の小窝: 'https://blog.yidaozhan.top'
+            小夏鸢的波子汽水: 'https://me.owo.today/'
+            xtex's Blog: 'https://xtex.exozy.me/'
+            purofle的Blog: 'https://blog.archlinux.tech/'
+            Chi_Tang's Blog: 'https://blog.chitang.dev/'
+            资源管理器博客: 'https://www.zyglq.cn/'
+
     # Categories widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
