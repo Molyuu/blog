@@ -2,5 +2,7 @@
   "accentColor": "#4d70ff",
   "theme": "moonstone",
   "cssTheme": "Minimal",
-  "baseFontSize": 24
+  "baseFontSize": 14,
+  "textFontFamily": "LXGW WenKai",
+  "interfaceFontFamily": "Sarasa Gothic SC"
 }

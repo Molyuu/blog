@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Hello-Internet.md",
-                "mode": "source",
+                "file": "Neovim-From-Zero-to-One.md",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Hello-Internet.md",
+                "file": "Neovim-From-Zero-to-One.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Hello-Internet.md",
+                "file": "Neovim-From-Zero-to-One.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Hello-Internet.md"
+                "file": "Neovim-From-Zero-to-One.md"
               }
             }
           }
@@ -148,6 +148,9 @@
   },
   "active": "d3c7739d67545422",
   "lastOpenFiles": [
+    "Hello-Internet.md",
+    "Neovim-From-Zero-to-One.md",
+    "Untitled.md",
     "Pasted image 20230805030356.png"
   ]
 }
