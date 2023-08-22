@@ -1,7 +1,9 @@
 ---
 title: CSP-J/S 第一轮知识点总结
 date: 2023-08-22 10:26:02
-tags: tech, oi
+tags: 
+    - tech
+    - oi
 categories: note
 ---
 

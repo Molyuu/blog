@@ -1,8 +1,11 @@
 ---
 title: 'Neovim: From Zero to One'
 date: 2023-08-21 16:31:19
-tags: tech
-categories: guide
+tags:
+    - linux
+    - tech
+    - neovim
+categories: note
 ---
 
 从零开始的 Neovim 配置指南
