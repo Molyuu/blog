@@ -6,6 +6,7 @@ author: Molyuu
 language: en
 timezone: 'Asia/Shanghai'
 url: https://blog.molyuu.cyou/
+root: /
 permalink: ':year/:month/:day/:title/'
 permalink_defaults: null
 pretty_urls:
