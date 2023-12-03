@@ -231,12 +231,10 @@ widgets:
             Github:
                 icon: fab fa-github
                 url: 'https://github.com/Molyuu'
-            Mastodon:
-                icon: fab fa-mastodon
-                url: 'https://hub.winslow.cloud/@molyuu/'
-            RSS:
-                icon: fas fa-rss
-                url: /
+            Telegram:
+                icon: fab fa-telegram
+                url: 'https://t.me/Molyuu_Official'
+
     # Table of contents widget configurations
     -
         # Where should the widget be placed, left sidebar or right sidebar
