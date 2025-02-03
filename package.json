@@ -14,7 +14,7 @@
   "dependencies": {
     "hexo": "^7.3.0",
     "hexo-asset-image": "github:CodeFalling/hexo-asset-image",
-    "hexo-component-inferno": "^3.1.1",
+    "hexo-component-inferno": "^3.1.2",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-index": "^4.0.0",
