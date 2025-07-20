@@ -2,7 +2,7 @@
 title: Molyuu Disorder
 date: 2023-12-31 23:53:00
 tags:
-  - life
+  - ideas
   - psychiatry
 categories: essay
 ---
