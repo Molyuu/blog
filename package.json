@@ -27,6 +27,6 @@
     "hexo-server": "^3.0.0",
     "hexo-theme-icarus": "^6.1.1",
     "hexo-theme-landscape": "^1.1.0",
-    "hexo-blog-encrypt": "^3.0.3"
+    "hexo-blog-encrypt": "^4.0.0"
   }
 }
