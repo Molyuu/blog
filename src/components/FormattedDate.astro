@@ -1,15 +1,14 @@
 ---
+import { isoDate } from '../utils/date';
+
 interface Props {
 	date: Date;
+	/** `full` → YYYY-MM-DD, `short` → MM-DD */
+	format?: 'full' | 'short';
 }
 
-const { date } = Astro.props;
+const { date, format = 'full' } = Astro.props;
+const text = isoDate(date);
 ---
 
-<time datetime={date.toISOString()}>
-	{date.toLocaleDateString('en-us', {
-		year: 'numeric',
-		month: 'short',
-		day: 'numeric',
-	})}
-</time>
+<time datetime={date.toISOString()}>{format === 'short' ? text.slice(5) : text}</time>

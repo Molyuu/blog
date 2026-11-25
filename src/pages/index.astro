@@ -1,22 +1,73 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
+import { render } from 'astro:content';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import PostList from '../components/PostList.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import Base from '../layouts/Base.astro';
+import { getNowEntries, nowLabel } from '../utils/now';
+import { getPosts } from '../utils/posts';
+
+const posts = await getPosts();
+
+// 「最近在做什么」 shows the newest file in src/content/now/; hidden when there is none.
+const [latestNow] = await getNowEntries();
+const NowContent = latestNow && (await render(latestNow)).Content;
 ---
 
-<!doctype html>
-<html lang="zh-CN">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>{SITE_TITLE}</h1>
-			<p>这是我的博客！这是写一些公开性的长文章和教程的地方。</p>
-			<p><a href="/blog/">去看文章 →</a></p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Base title={SITE_TITLE} description={SITE_DESCRIPTION} class="home">
+	<Header />
+	<hr />
+	<main class="stack">
+		{
+			latestNow && NowContent && (
+				<section class="now">
+					<h2>
+						最近在做什么{' '}
+						<span class="muted">（{nowLabel(latestNow.id)}）</span>
+					</h2>
+					<div class="now-list centered-block">
+						<NowContent />
+					</div>
+					<p class="history">
+						<a href="/now/">以前在做什么 →</a>
+					</p>
+				</section>
+			)
+		}
+		<section class="posts">
+			<h2>全部文章</h2>
+			<PostList posts={posts} />
+		</section>
+	</main>
+	<hr />
+	<Footer />
+</Base>
+
+<style>
+	.home {
+		--gap: 40px;
+		padding-top: 64px;
+	}
+	section {
+		display: flex;
+		flex-direction: column;
+	}
+	.now {
+		gap: 8px;
+	}
+	h2 {
+		text-align: center;
+	}
+	.posts {
+		gap: 14px;
+	}
+	h2 .muted {
+		font-weight: 400;
+		font-size: 14px;
+	}
+	.history {
+		text-align: center;
+		font-size: 14px;
+	}
+</style>

@@ -1,0 +1,58 @@
+---
+import { render } from 'astro:content';
+import BackLink from '../components/BackLink.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE } from '../consts';
+import Base from '../layouts/Base.astro';
+import { getNowEntries, nowLabel } from '../utils/now';
+
+const entries = await Promise.all(
+	(await getNowEntries()).map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
+);
+---
+
+<Base title={`最近在做什么 · ${SITE_TITLE}`} description="Molyuu 每隔一阵子在做的事，按月记录">
+	<BackLink />
+	<main class="stack">
+		<header class="page-header">
+			<h1>最近在做什么</h1>
+			<p class="meta">共 {entries.length} 次记录</p>
+		</header>
+		<hr />
+		<div class="entries centered-block">
+			{
+				entries.map(({ entry, Content }) => (
+					<section>
+						<h2 class="mono muted">
+							<span aria-hidden="true">## </span>
+							{nowLabel(entry.id)}
+						</h2>
+						<div class="now-list">
+							<Content />
+						</div>
+					</section>
+				))
+			}
+		</div>
+	</main>
+	<hr />
+	<Footer />
+</Base>
+
+<style>
+	.entries,
+	section {
+		display: flex;
+		flex-direction: column;
+	}
+	.entries {
+		gap: 28px;
+	}
+	section {
+		gap: 8px;
+	}
+	h2 {
+		font-size: 14px;
+		font-weight: 400;
+	}
+</style>

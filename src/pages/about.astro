@@ -1,19 +1,27 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import BackLink from '../components/BackLink.astro';
+import Footer from '../components/Footer.astro';
+import Base from '../layouts/Base.astro';
 ---
 
-<Layout
-	title="About The Blog"
-	description="关于这个博客"
-	pubDate={new Date('2023-08-06T00:00:00+08:00')}
-	tags={[]}
->
-	<p>这是我的博客！</p>
-	<p>
-		这是写一些公开性的长文章和教程的地方 日常和一些随手记的内容会发在社交媒体里 Telegram
-		频道、微信朋友圈都会随机掉落小故事（x
-	</p>
-	<p>
-		想认识我的话可以看我的个人主页！就在 <a href="https://molyuu.com/">molyuu.com</a> 这个域名里
-	</p>
-</Layout>
+<Base title="About The Blog" description="关于这个博客">
+	<BackLink />
+	<main class="stack">
+		<header class="page-header">
+			<h1>About The Blog</h1>
+		</header>
+		<hr />
+		<div class="prose">
+			<p>这是我的博客！</p>
+			<p>
+				这是写一些公开性的长文章和教程的地方 日常和一些随手记的内容会发在社交媒体里 Telegram
+				频道、微信朋友圈都会随机掉落小故事（x
+			</p>
+			<p>
+				想认识我的话可以看我的个人主页！就在 <a href="https://molyuu.com/">molyuu.com</a> 这个域名里
+			</p>
+		</div>
+	</main>
+	<hr />
+	<Footer />
+</Base>

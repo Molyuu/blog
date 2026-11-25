@@ -1,0 +1,56 @@
+---
+import BackLink from '../../components/BackLink.astro';
+import Footer from '../../components/Footer.astro';
+import { CATEGORY_IDS, CATEGORY_LABELS, SITE_TITLE } from '../../consts';
+import Base from '../../layouts/Base.astro';
+import { getPosts } from '../../utils/posts';
+
+const posts = await getPosts();
+// Only categories that have posts get a page.
+const categories = CATEGORY_IDS.map((id) => ({
+	id,
+	count: posts.filter((post) => post.data.category === id).length,
+})).filter(({ count }) => count > 0);
+---
+
+<Base title={`分类 · ${SITE_TITLE}`} description={`${SITE_TITLE} 的文章分类`}>
+	<BackLink />
+	<main class="stack">
+		<header class="page-header">
+			<h1>分类</h1>
+			<p class="meta">ls category/</p>
+		</header>
+		<hr />
+		<ul class="centered-block">
+			{
+				categories.map(({ id, count }) => (
+					<li>
+						<a href={`/category/${id}/`}>{CATEGORY_LABELS[id]}</a>
+						<span class="mono muted">{count} 篇</span>
+					</li>
+				))
+			}
+		</ul>
+	</main>
+	<hr />
+	<Footer />
+</Base>
+
+<style>
+	ul {
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+	li {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0 14px;
+	}
+	.mono {
+		font-size: 14px;
+	}
+</style>

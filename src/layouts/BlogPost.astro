@@ -1,84 +1,57 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
+import BackLink from '../components/BackLink.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
+import { CATEGORY_LABELS, SITE_EMAIL } from '../consts';
+import type { Neighbor } from '../utils/posts';
+import { roundWords } from '../utils/posts';
+import Base from './Base.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+	words: number;
+	newer?: Neighbor;
+	older?: Neighbor;
+};
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, category, words, newer, older } =
+	Astro.props;
 ---
 
-<html lang="zh-CN">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
+<Base title={title} description={description} image={heroImage}>
+	<BackLink />
+	<main>
+		<article class="stack">
+			<header class="page-header">
+				<h1>{title}</h1>
+				<p class="meta">
+					<FormattedDate date={pubDate} /> · [{CATEGORY_LABELS[category]}] · 约 {roundWords(words)} 字
+					{updatedDate && <> · 更新于 <FormattedDate date={updatedDate} /></>}
+				</p>
+			</header>
+			<hr />
+			<div class="prose">
+				<slot />
+			</div>
+		</article>
+	</main>
+	<hr />
+	<Footer>
+		<nav class="post-nav" aria-label="上一篇和下一篇">
+			{older ? <a href={`/blog/${older.id}/`}>← {older.title}</a> : <span>（这是第一篇）</span>}
+			{newer ? <a href={`/blog/${newer.id}/`}>{newer.title} →</a> : <span>（这是最新一篇）</span>}
+		</nav>
+		<p>读完有想法？写信给我：<a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a></p>
+	</Footer>
+</Base>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{updatedDate && (
-								<div class="last-updated-on">
-									Last updated on <FormattedDate date={updatedDate} />
-								</div>
-							)}
-						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+<style>
+	.post-nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 8px 24px;
+		margin-bottom: 6px;
+		font-size: 15px;
+	}
+</style>

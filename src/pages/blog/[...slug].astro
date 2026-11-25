@@ -1,20 +1,28 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import { countWords, getPosts, type Neighbor, type Post } from '../../utils/posts';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
+	const posts = await getPosts(); // newest first
+	const neighbor = (post?: Post): Neighbor | undefined =>
+		post && { id: post.id, title: post.data.title };
+	return posts.map((post, i) => ({
 		params: { slug: post.id },
-		props: post,
+		props: { post, newer: neighbor(posts[i - 1]), older: neighbor(posts[i + 1]) },
 	}));
 }
-type Props = CollectionEntry<'blog'>;
 
-const post = Astro.props;
+interface Props {
+	post: Post;
+	newer?: Neighbor;
+	older?: Neighbor;
+}
+
+const { post, newer, older } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} words={countWords(post.body ?? '')} newer={newer} older={older}>
 	<Content />
 </BlogPost>

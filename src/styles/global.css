@@ -1,141 +1,220 @@
 /*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+  Plain-text theme. Values come from docs/redesign/home.html and post.html.
+  `--font-mono` is defined by Astro's <Font> component (IBM Plex Mono).
  */
 
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--bg: #fbfbf7;
+	--text: #1c1c1a;
+	--muted: #66665f;
+	--faint: #9a9a92;
+	--link: #1d3fa8;
+	--link-hover: #0d2470;
+	--rule: #b8b8ae;
+	--code-bg: #eeeee6;
+	--pre-bg: #f0f0e8;
+	--pre-border: #dcdcd2;
+	--quote-rule: #c9c9bf;
+	--quote-text: #4a4a44;
+	--font-serif: 'Songti SC', 'Noto Serif SC', 'SimSun', serif;
 }
+
 body {
-	font-family: var(--font-atkinson);
 	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
+	background: var(--bg);
+	color: var(--text);
+	font-family: var(--font-serif);
+	font-size: 17px;
+	line-height: 1.85;
 	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
 }
-main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
-}
+
+p,
+ul,
+ol,
+dl,
 h1,
 h2,
 h3,
 h4,
 h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
+h6,
+blockquote,
+pre,
+figure,
+table {
+	margin: 0;
 }
+
 h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
+	font-size: 28px;
 	font-weight: 700;
+	line-height: 1.4;
 }
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 1.6;
+}
+
 a {
-	color: var(--accent);
+	color: var(--link);
+	text-underline-offset: 3px;
 }
 a:hover {
-	color: var(--accent);
+	color: var(--link-hover);
 }
-p {
-	margin-bottom: 1em;
+
+hr {
+	margin: 0;
+	border: 0;
+	border-top: 1px dashed var(--rule);
 }
-.prose p {
-	margin-bottom: 2em;
+
+code,
+kbd,
+samp {
+	font-family: var(--font-mono);
 }
-textarea {
-	width: 100%;
-	font-size: 16px;
+
+code {
+	font-size: 0.88em; /* 15px in 17px body text */
+	background: var(--code-bg);
+	padding: 1px 5px;
 }
-input {
-	font-size: 16px;
+
+pre {
+	padding: 16px 18px;
+	background: var(--pre-bg);
+	border: 1px solid var(--pre-border);
+	overflow-x: auto;
+	font-family: var(--font-mono);
+	font-size: 14px;
+	line-height: 1.7;
 }
-table {
-	width: 100%;
+pre code {
+	font-size: inherit;
+	background: none;
+	padding: 0;
 }
+
+blockquote {
+	padding: 2px 0 2px 18px;
+	border-left: 2px solid var(--quote-rule);
+	color: var(--quote-text);
+}
+
 img {
 	max-width: 100%;
 	height: auto;
-	border-radius: 8px;
-}
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
 }
 
-.sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+table {
+	display: block;
+	max-width: 100%;
+	overflow-x: auto;
+	border-collapse: collapse;
+}
+th,
+td {
+	padding: 4px 12px;
+	border: 1px solid var(--pre-border);
+	text-align: left;
+}
+
+/* ---- Page skeleton ---- */
+
+.page {
+	--gap: 32px;
+	max-width: 660px;
+	margin-inline: auto;
+	padding: 56px clamp(20px, 7vw, 96px) 96px;
+}
+
+/* Lists (posts, categories, now) are centred as a block; their rows stay left-aligned. */
+.centered-block {
+	align-self: center;
+	max-width: 100%;
+}
+
+.stack {
+	display: flex;
+	flex-direction: column;
+	gap: var(--gap);
+}
+
+.mono {
+	font-family: var(--font-mono);
+}
+
+.muted {
+	color: var(--muted);
+}
+
+/* Title block on every page except the home page: h1 + monospace meta line. */
+.page-header {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	text-align: center;
+}
+.page-header h1 {
+	line-height: 1.45;
+}
+.page-header .meta {
+	font-family: var(--font-mono);
+	font-size: 13px;
+	color: var(--muted);
+}
+
+/* 「最近在做什么」 entries (src/content/now/*.md) */
+.now-list ul {
+	padding-left: 1.4em;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.now-list > * + * {
+	margin-top: 8px;
+}
+
+/* ---- Article body (Markdown output) ---- */
+
+.prose {
+	line-height: 1.9;
+}
+.prose > * + * {
+	margin-top: 20px;
+}
+.prose > h2 {
+	font-size: 20px;
+	line-height: 1.5;
+}
+.prose > * + h2 {
+	margin-top: 32px;
+}
+.prose > * + h3,
+.prose > * + h4 {
+	margin-top: 28px;
+}
+.prose img {
+	display: block;
+	margin-inline: auto;
+}
+.prose ul,
+.prose ol {
+	padding-left: 1.4em;
+}
+.prose li > * + * {
+	margin-top: 8px;
+}
+.prose blockquote > * + * {
+	margin-top: 12px;
 }

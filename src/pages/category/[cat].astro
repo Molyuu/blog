@@ -1,0 +1,39 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BackLink from '../../components/BackLink.astro';
+import Footer from '../../components/Footer.astro';
+import PostList from '../../components/PostList.astro';
+import { type Category, CATEGORY_IDS, CATEGORY_LABELS, SITE_TITLE } from '../../consts';
+import Base from '../../layouts/Base.astro';
+import { getPosts, type Post } from '../../utils/posts';
+
+export const getStaticPaths = (async () => {
+	const posts = await getPosts();
+	return CATEGORY_IDS.map((cat) => ({
+		params: { cat },
+		props: { posts: posts.filter((post) => post.data.category === cat) },
+	})).filter(({ props }) => props.posts.length > 0);
+}) satisfies GetStaticPaths;
+
+interface Props {
+	posts: Post[];
+}
+
+const cat = Astro.params.cat as Category;
+const { posts } = Astro.props;
+const label = CATEGORY_LABELS[cat];
+---
+
+<Base title={`${label} · ${SITE_TITLE}`} description={`${SITE_TITLE} 中「${label}」分类下的文章`}>
+	<BackLink />
+	<main class="stack">
+		<header class="page-header">
+			<h1>{label}</h1>
+			<p class="meta">共 {posts.length} 篇 · <a href="/category/">全部分类</a></p>
+		</header>
+		<hr />
+		<PostList posts={posts} showCategory={false} />
+	</main>
+	<hr />
+	<Footer />
+</Base>

@@ -1,0 +1,82 @@
+---
+// Posts grouped by year: a "## YYYY" heading, then one "MM-DD  title  [分类]" row per post.
+import { CATEGORY_LABELS } from '../consts';
+import { groupByYear, type Post } from '../utils/posts';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	/** Sorted newest first. */
+	posts: Post[];
+	showCategory?: boolean;
+}
+
+const { posts, showCategory = true } = Astro.props;
+---
+
+<div class="years centered-block">
+	{
+		groupByYear(posts).map(([year, items]) => (
+			<section class="year">
+				<h3 class="mono muted">
+					<span aria-hidden="true">## </span>
+					{year}
+				</h3>
+				<ul>
+					{items.map((post) => (
+						<li>
+							<span class="date mono muted">
+								<FormattedDate date={post.data.pubDate} format="short" />
+							</span>
+							<span>
+								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+								{showCategory && (
+									<>
+										{' '}
+										<span class="cat muted">[{CATEGORY_LABELS[post.data.category]}]</span>
+									</>
+								)}
+							</span>
+						</li>
+					))}
+				</ul>
+			</section>
+		))
+	}
+</div>
+
+<style>
+	.years,
+	.year {
+		display: flex;
+		flex-direction: column;
+	}
+	.years {
+		gap: 28px;
+	}
+	.year {
+		gap: 14px;
+	}
+	h3 {
+		font-size: 14px;
+		font-weight: 400;
+	}
+	ul {
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+	li {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 14px;
+	}
+	.date {
+		font-size: 14px;
+		min-width: 88px;
+	}
+	.cat {
+		font-size: 14px;
+	}
+</style>
