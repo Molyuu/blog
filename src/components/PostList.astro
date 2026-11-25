@@ -67,14 +67,22 @@ const { posts, showCategory = true } = Astro.props;
 		flex-direction: column;
 		gap: 6px;
 	}
+	/* Date in its own column; a long title wraps inside the title column
+	   instead of dropping below the date, so every row lines up on phones. */
 	li {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0 14px;
+		display: grid;
+		grid-template-columns: max-content minmax(0, 1fr);
+		align-items: baseline;
+		column-gap: 14px;
 	}
 	.date {
 		font-size: 14px;
 		min-width: 88px;
+	}
+	@media (max-width: 480px) {
+		.date {
+			min-width: 0;
+		}
 	}
 	.cat {
 		font-size: 14px;
