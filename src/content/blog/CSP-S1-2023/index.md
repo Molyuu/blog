@@ -1,8 +1,6 @@
 ---
 title: "CSP S 2023 游记"
 pubDate: "2023-09-16T20:25:35+08:00"
-tags: ["tech","oi"]
-category: "essay"
 ---
 《50 块钱面个基》
 

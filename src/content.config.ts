@@ -1,7 +1,6 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { CATEGORY_IDS } from './consts';
 
 const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
@@ -14,9 +13,6 @@ const blog = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: z.optional(image()),
-			// Fine-grained labels; `category` is the single top-level section.
-			tags: z.array(z.string()).default([]),
-			category: z.enum(CATEGORY_IDS),
 		}),
 });
 

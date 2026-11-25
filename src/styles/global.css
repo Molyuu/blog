@@ -138,7 +138,7 @@ td {
 	padding: 56px clamp(20px, 7vw, 96px) 96px;
 }
 
-/* Lists (posts, categories, now) are centred as a block; their rows stay left-aligned. */
+/* Lists (posts, now) are centred as a block; their rows stay left-aligned. */
 .centered-block {
 	align-self: center;
 	max-width: 100%;

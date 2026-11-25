@@ -1,16 +1,14 @@
 ---
-// Posts grouped by year: a "## YYYY" heading, then one "MM-DD  title  [分类]" row per post.
-import { CATEGORY_LABELS } from '../consts';
+// Posts grouped by year: a "## YYYY" heading, then one "MM-DD  title" row per post.
 import { groupByYear, type Post } from '../utils/posts';
 import FormattedDate from './FormattedDate.astro';
 
 interface Props {
 	/** Sorted newest first. */
 	posts: Post[];
-	showCategory?: boolean;
 }
 
-const { posts, showCategory = true } = Astro.props;
+const { posts } = Astro.props;
 ---
 
 <div class="years centered-block">
@@ -27,15 +25,7 @@ const { posts, showCategory = true } = Astro.props;
 							<span class="date mono muted">
 								<FormattedDate date={post.data.pubDate} format="short" />
 							</span>
-							<span>
-								<a href={`/blog/${post.id}/`}>{post.data.title}</a>
-								{showCategory && (
-									<>
-										{' '}
-										<span class="cat muted">[{CATEGORY_LABELS[post.data.category]}]</span>
-									</>
-								)}
-							</span>
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
 						</li>
 					))}
 				</ul>
@@ -83,8 +73,5 @@ const { posts, showCategory = true } = Astro.props;
 		.date {
 			min-width: 0;
 		}
-	}
-	.cat {
-		font-size: 14px;
 	}
 </style>

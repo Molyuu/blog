@@ -3,7 +3,7 @@ import type { CollectionEntry } from 'astro:content';
 import BackLink from '../components/BackLink.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import { CATEGORY_LABELS, SITE_EMAIL } from '../consts';
+import { SITE_EMAIL } from '../consts';
 import type { Neighbor } from '../utils/posts';
 import { roundWords } from '../utils/posts';
 import Base from './Base.astro';
@@ -14,8 +14,7 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	older?: Neighbor;
 };
 
-const { title, pubDate, updatedDate, heroImage, category, words, newer, older } =
-	Astro.props;
+const { title, pubDate, updatedDate, heroImage, words, newer, older } = Astro.props;
 ---
 
 <Base title={title} image={heroImage}>
@@ -25,7 +24,7 @@ const { title, pubDate, updatedDate, heroImage, category, words, newer, older } 
 			<header class="page-header">
 				<h1>{title}</h1>
 				<p class="meta">
-					<FormattedDate date={pubDate} /> · [{CATEGORY_LABELS[category]}] · 约 {roundWords(words)} 字
+					<FormattedDate date={pubDate} /> · 约 {roundWords(words)} 字
 					{updatedDate && <> · 更新于 <FormattedDate date={updatedDate} /></>}
 				</p>
 			</header>

@@ -1,8 +1,6 @@
 ---
 title: "Molyuu Disorder"
 pubDate: "2023-12-31T23:53:00+08:00"
-tags: ["life","psychiatry"]
-category: "essay"
 ---
 写在元旦这天
 

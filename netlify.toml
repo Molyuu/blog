@@ -31,3 +31,9 @@
   from = "/2023/12/31/Molyuu-Disorder/"
   to = "/blog/molyuu-disorder/"
   status = 301
+
+# Category pages were removed; send old links to the full post list.
+[[redirects]]
+  from = "/category/*"
+  to = "/blog/"
+  status = 301

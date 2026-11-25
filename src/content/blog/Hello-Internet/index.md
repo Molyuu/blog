@@ -1,8 +1,6 @@
 ---
 title: "Hello Internet"
 pubDate: "2023-08-05T02:58:39+08:00"
-tags: ["life"]
-category: "essay"
 ---
 Yeah, it's on, again.
 
