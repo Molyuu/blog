@@ -37,3 +37,10 @@
   from = "/category/*"
   to = "/blog/"
   status = 301
+
+# Tools that fetch /favicon.ico directly (feed readers, bookmarks) get the
+# GitHub avatar too. 302 so a new avatar shows up without stale caches.
+[[redirects]]
+  from = "/favicon.ico"
+  to = "https://avatars.githubusercontent.com/u/102394810?s=64"
+  status = 302
