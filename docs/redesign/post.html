@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>文章页 · 纯文本</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#fbfbf7}
+a{color:#1d3fa8;text-underline-offset:3px}a:hover{color:#0d2470}
+</style>
+<div style="min-height: 2300px; background: #fbfbf7; color: #1c1c1a; font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif; font-size: 17px; line-height: 1.9">
+<div style="max-width: 660px; padding: 56px clamp(20px, 7vw, 96px) 96px; display: flex; flex-direction: column; gap: 32px">
+
+<nav aria-label="返回" style="display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: 15px">
+<a href="home.html">← Molyuu 的网络角落</a>
+</nav>
+
+<header style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-size: 28px; font-weight: 700; line-height: 1.45">为什么我要自己写一个视频播放器</h1>
+<p style="margin: 0; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 13px; color: #66665f">2026-11-20 · [技术] · 约 2400 字 · 改过 2 次</p>
+</header>
+
+<hr style="margin: 0; border: 0; border-top: 1px dashed #b8b8ae">
+
+<article style="display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0">手机里存了一堆从电脑拷过来的视频，大部分是电影，少数是课程录像。试过 VLC、Infuse、Outplayer，每个都能用，每个都有一点让我别扭的地方：有的界面太满，有的要订阅，有的字幕设置藏得很深。</p>
+<p style="margin: 0">于是我想：要不自己写一个？只做三件事——打开本地文件、记住看到哪里、字幕能调大小。别的都不要。</p>
+
+<h2 style="margin: 12px 0 0; font-size: 20px; font-weight: 700">一、先跑起来</h2>
+<p style="margin: 0">最小的版本其实很短。<code style="font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 15px; background: #eeeee6; padding: 1px 5px">AVPlayer</code> 本身已经做好了解码和播放，我要做的只是把文件 URL 交给它：</p>
+<pre style="margin: 0; padding: 16px 18px; background: #f0f0e8; border: 1px solid #dcdcd2; overflow-x: auto; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 14px; line-height: 1.7"><code>let player = AVPlayer(url: fileURL)
+let controller = AVPlayerViewController()
+controller.player = player
+present(controller, animated: true) {
+    player.play()
+}</code></pre>
+<p style="margin: 0">真正麻烦的是后面：沙盒里的文件怎么导入、MKV 格式系统不认怎么办、进度存在哪里。这些我会一个一个写。</p>
+
+<blockquote style="margin: 0; padding: 2px 0 2px 18px; border-left: 2px solid #c9c9bf; color: #4a4a44">
+<p style="margin: 0">写给自己用的软件，最大的好处是可以不讲道理。</p>
+</blockquote>
+
+<h2 style="margin: 12px 0 0; font-size: 20px; font-weight: 700">二、为什么不直接用现成的</h2>
+<p style="margin: 0">老实说，理性上没有理由。现成的 App 比我写的好一百倍。但我想知道一个视频从文件变成画面，中间到底经过了什么。这是另一种「看电影」。</p>
+
+<p style="margin: 0; color: #66665f; font-size: 15px">（正文为示意，换成你自己的文章即可。）</p>
+</article>
+
+<hr style="margin: 0; border: 0; border-top: 1px dashed #b8b8ae">
+
+<footer style="display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px">
+<a href="#">← 重看《一一》：洋洋为什么要拍别人的后脑勺</a>
+<span style="color: #66665f">（这是最新一篇）</span>
+</div>
+<p style="margin: 0; color: #66665f; font-size: 14px">读完有想法？写信给我：<a href="#">[你的邮箱]</a></p>
+</footer>
+
+</div>
+</div>
+</body>
+</html>
