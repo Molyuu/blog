@@ -1,6 +1,5 @@
 ---
 title: "CSP-J/S 第一轮知识点总结"
-description: "最近在备战信竞, 写一篇笔记记录一下 CSP J/S 第一轮的知识点，也方便我打印出来带去学校（x"
 pubDate: "2023-08-22T10:26:02+08:00"
 tags: ["tech","oi"]
 category: "tech"

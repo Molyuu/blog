@@ -14,11 +14,11 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	older?: Neighbor;
 };
 
-const { title, description, pubDate, updatedDate, heroImage, category, words, newer, older } =
+const { title, pubDate, updatedDate, heroImage, category, words, newer, older } =
 	Astro.props;
 ---
 
-<Base title={title} description={description} image={heroImage}>
+<Base title={title} image={heroImage}>
 	<BackLink />
 	<main>
 		<article class="stack">

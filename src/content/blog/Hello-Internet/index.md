@@ -1,6 +1,5 @@
 ---
 title: "Hello Internet"
-description: "Yeah, it's on, again."
 pubDate: "2023-08-05T02:58:39+08:00"
 tags: ["life"]
 category: "essay"
