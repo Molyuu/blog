@@ -1,5 +1,5 @@
 @AGENTS.md
 
-## 正在进行：博客改版
+## 博客改版（已完成）
 
-改版方案、设计稿和待定事项都在 `docs/redesign/`，开始相关工作前先读 `docs/redesign/README.md`。
+2026-11-25 完成并合并到 `astro`。设计稿和当时的交接说明在 `docs/redesign/`，只作记录，现在以代码为准。改样式或页面结构前，可以先看 `docs/redesign/README.md` 里的设计数值和末尾「实际实现与设计稿的差异」。

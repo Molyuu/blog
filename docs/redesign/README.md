@@ -1,5 +1,7 @@
 # 博客改版：方向 A「纯文本手工站」
 
+> **状态：已完成。** 2026-11-25 合并到 `astro` 并上线（提交 `d3a80c1`）。下面是当时的交接说明，保留作记录；现在以代码为准。实现时和设计稿不一样的地方，见文末「实际实现与设计稿的差异」。
+
 这是改版的交接说明。设计稿是同目录下的两个静态 HTML：
 
 - `home.html` —— 首页
@@ -53,22 +55,32 @@
 - `src/pages/blog/index.astro`：卡片网格不要了。可以改成和首页一样的列表，或者重定向到 `/`
 - 新建 `src/pages/category/[cat].astro`：与首页列表相同，按分类筛选
 
-## 待定：分类方案
+## 分类方案（已确定）
 
-现在 `category` 只有 `note` 和 `essay`，`tags` 里是 `tech`、`oi`、`life` 等。设计稿用的分类是 **技术 / 哲学 / 社会 / 影评 / 随笔**。
+原来 `category` 只有 `note` 和 `essay`，`tags` 里是 `tech`、`oi`、`life` 等。设计稿用的分类是 **技术 / 哲学 / 社会 / 影评 / 随笔**。
 
-建议的做法：
+2026-11-25 Molyuu 确认按下面的方案做，已经实现：
 
-- `category` 改成 enum：`tech | philosophy | society | film | essay`
-- 页面上通过一个映射表显示中文名
+- `category` 改成必填的 enum：`tech | philosophy | society | film | essay`（`src/consts.ts` 的 `CATEGORY_IDS`）
+- 页面上通过 `CATEGORY_LABELS` 映射表显示中文名
 - `tags` 保留，作细分标签
-- 五篇旧文章需要重新归类，例如 Neovim、CSP 笔记 → tech；Hello Internet → essay
-
-做这一步之前先和 Molyuu 确认。
+- 旧文章归类：Neovim、CSP-J/S 笔记 → tech；CSP-S 2023 游记、Hello Internet、Molyuu Disorder → essay
+- 只有有文章的分类才生成 `/category/<id>/` 页面
 
 ## 约束
 
 - 不要动 `netlify.toml` 里的旧 Hexo 重定向
 - 文章路径保持 `/blog/<slug>/` 不变
-- 在新分支上改，用 Netlify 的 deploy preview 确认后再合并
+- 在新分支上改，用 Netlify 的 deploy preview 确认后再合并（这次按 Molyuu 的要求没走 deploy preview，在本地看过后直接合并到 `astro`）
 - 手机宽度下也要好用：列表行用 `flex-wrap`，`pre` 横向滚动
+
+## 实际实现与设计稿的差异
+
+- 布局居中，原稿是靠左（见上面「设计要点」）。页脚也居中，不是「其他要改的文件」里写的左对齐
+- 站名和简介沿用原来的 `Molyuu's Blog` 和「写一些公开性的长文章和教程的地方」，没用设计稿里的示意文字
+- 联系邮箱是 `i@molyuu.com`（`src/consts.ts` 的 `SITE_EMAIL`）
+- 「最近在做什么」改成按月记录：`src/content/now/YYYY-MM.md`，首页显示最新一份，`/now/` 显示全部
+- 代码块关掉了语法高亮（`astro.config.mjs` 里 `markdown.syntaxHighlight: false`），和设计稿一样是单色
+- 多了 `/category/` 分类总览页，导航里的「分类」指向它；`/blog/` 保留为和首页一样的完整列表
+- 文章页底部除了上一篇 / 下一篇和写信那一行，也有版权和「最后修改」两行
+- 日期一律按 Asia/Shanghai 格式化，避免 Netlify 用 UTC 构建时日期错一天；字数不算代码块
