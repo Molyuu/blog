@@ -1,0 +1,33 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Keep in sync with the local Node major; Astro requires >= 22.23.4
+  NODE_VERSION = "26"
+
+# Old Hexo permalinks (as served on blog.molyuu.com before the migration)
+[[redirects]]
+  from = "/2023/08/04/Hello-Internet/"
+  to = "/blog/hello-internet/"
+  status = 301
+
+[[redirects]]
+  from = "/2023/08/21/Neovim-From-Zero-to-One/"
+  to = "/blog/neovim-from-zero-to-one/"
+  status = 301
+
+[[redirects]]
+  from = "/2023/08/22/CSP-JS1-Basic/"
+  to = "/blog/csp-js1-basic/"
+  status = 301
+
+[[redirects]]
+  from = "/2023/09/16/CSP-S1-2023/"
+  to = "/blog/csp-s1-2023/"
+  status = 301
+
+[[redirects]]
+  from = "/2023/12/31/Molyuu-Disorder/"
+  to = "/blog/molyuu-disorder/"
+  status = 301
