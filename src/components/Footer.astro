@@ -1,22 +1,28 @@
 ---
 // Pass extra lines (e.g. previous/next links) as children; without children the
-// footer opens with the default "write to me" line.
+// footer opens with just the email address.
+// `showUpdated={false}` hides the「最后修改」line (the home page does this).
 import { SITE_EMAIL } from '../consts';
 import { isoDate } from '../utils/date';
 
+interface Props {
+	showUpdated?: boolean;
+}
+
+const { showUpdated = true } = Astro.props;
 const built = isoDate(new Date());
 ---
 
 <footer>
 	<slot>
-		<p>这里没有评论区。想说点什么，写信给我：<a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a></p>
+		<p><a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a></p>
 	</slot>
 	<p>
 		&copy; {built.slice(0, 4)} Molyuu ·{' '}
 		<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>
 		{' '}· <a href="https://github.com/Molyuu" target="_blank">GitHub</a>
 	</p>
-	<p class="mono updated">最后修改 {built}</p>
+	{showUpdated && <p class="mono updated">最后修改 {built}</p>}
 </footer>
 
 <style>

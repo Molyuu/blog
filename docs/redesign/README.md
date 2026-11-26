@@ -59,7 +59,9 @@
 
 原来 `category` 只有 `note` 和 `essay`，`tags` 里是 `tech`、`oi`、`life` 等。设计稿用的分类是 **技术 / 哲学 / 社会 / 影评 / 随笔**。
 
-2026-11-25 Molyuu 确认按下面的方案做，已经实现：
+> **已去掉。** 同一天晚些时候，分类和标签整个去掉了（提交 `cc68f4b`）：只有五篇文章，没什么可筛的，文章只按日期列出。`category`、`tags`、`CATEGORY_IDS`、`CATEGORY_LABELS` 和 `/category/` 页面都已删除，旧的 `/category/*` 链接在 `netlify.toml` 里 301 到 `/blog/`。下面是当时的方案，只作记录。
+
+2026-11-25 Molyuu 确认按下面的方案做，当时已经实现：
 
 - `category` 改成必填的 enum：`tech | philosophy | society | film | essay`（`src/consts.ts` 的 `CATEGORY_IDS`）
 - 页面上通过 `CATEGORY_LABELS` 映射表显示中文名
@@ -81,6 +83,9 @@
 - 联系邮箱是 `i@molyuu.com`（`src/consts.ts` 的 `SITE_EMAIL`）
 - 「最近在做什么」改成按月记录：`src/content/now/YYYY-MM.md`，首页显示最新一份，`/now/` 显示全部
 - 代码块关掉了语法高亮（`astro.config.mjs` 里 `markdown.syntaxHighlight: false`），和设计稿一样是单色
-- 多了 `/category/` 分类总览页，导航里的「分类」指向它；`/blog/` 保留为和首页一样的完整列表
-- 文章页底部除了上一篇 / 下一篇和写信那一行，也有版权和「最后修改」两行
+- 没有分类（见上面「分类方案」）：导航只有 `文章 / 关于 / RSS`，列表行只有 `MM-DD` + 标题，没有 `[分类]`。`/blog/` 保留为和首页一样的完整列表
+- 文章元信息行是 `YYYY-MM-DD · 约 N 字`，有 `updatedDate` 时再加 `· 更新于 YYYY-MM-DD`；没有设计稿里的分类和「改过 N 次」
+- 页脚默认第一行只有邮箱地址，去掉了设计稿里的「这里没有评论区。想说点什么，写信给我：」。下面是版权一行（`© 年份 Molyuu · CC BY-NC-SA 4.0 · GitHub`）和「最后修改」一行；首页不显示「最后修改」
+- 文章页底部的页脚第一行换成上一篇 / 下一篇，下面同样有版权和「最后修改」两行；文章页不放邮箱，也没有设计稿里的「读完有想法？写信给我」
+- 设计稿从 Google Fonts 加载 Noto Serif SC 并排在字体栈第一位；网站不加载中文 webfont，宋体按 `'Songti SC', 'Noto Serif SC', 'SimSun', serif` 的顺序取系统字体。所以联网打开设计稿时，字形可能和网站不一样，以网站为准
 - 日期一律按 Asia/Shanghai 格式化，避免 Netlify 用 UTC 构建时日期错一天；字数不算代码块
